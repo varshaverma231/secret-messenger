@@ -40,3 +40,50 @@ for(var i = 0; i < plain_text.length; i++ ){
 console.log(plain_text);
 
 
+// Encrypting Using Key
+
+var key = "12454333";
+
+
+function encrypt(key , message) {
+    var key_length = key.length;
+
+    for(var i = 0; i < message.length; i++ ){
+        var char_code = message.charCodeAt(i);
+
+        var increment = parseInt( key.charAt( i % key_length ) );
+
+        char_code = char_code + increment;
+        
+        var new_char = String.fromCharCode(char_code);
+    
+        message = message.substr(0, i) + new_char + message.substr(i+1);
+    }
+
+    return message;
+
+}
+
+function decrypt(key, encrypted_message) {
+    
+    var key_length = key.length;
+
+    for(var i = 0; i < encrypted_message.length; i++ ){
+        var char_code = encrypted_message.charCodeAt(i);
+
+        var decrement = parseInt( key.charAt( i % key_length ) );
+
+        char_code = char_code - decrement;
+        
+        var new_char = String.fromCharCode(char_code);
+    
+        encrypted_message = encrypted_message.substr(0, i) + new_char + encrypted_message.substr(i+1);
+    }
+
+    return encrypted_message;
+}
+
+
+var encrypted_text = encrypt(key, plain_text)
+
+var decrypted_text = decrypt(key, encrypted_text);
