@@ -85,7 +85,7 @@
                 function encrypt(key , message) {
                     var key_length = key.length;
 
-                    for(var i = 0; i < message.length; i++ ){
+                    for(var i = 0,var j = 0; i < message.length; i++ ){
                         var char_code = message.charCodeAt(i);
 
                         var increment = parseInt( key.charAt( i % key_length ) );
